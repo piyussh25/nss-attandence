@@ -8,7 +8,7 @@ form.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
-         const response = await fetch('/.netlify/functions/api/get-attendance', { 
+        const response = await fetch('/api/get-attendance', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
