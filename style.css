@@ -1,0 +1,323 @@
+
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec); /* Subtle blue-gray gradient */
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Main Container Styling */
+.container {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+    animation: fadeIn 0.8s ease-out;
+    position: relative; /* Needed for absolute positioning of logout icon */
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50; /* Dark blue-gray for headings */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.nss-logo {
+    display: block;
+    margin: 0 auto 1.5rem auto; /* Center the logo and add some bottom margin */
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.nss-logo:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 600;
+}
+
+/* Form Styling */
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+    transform: scale(1.01);
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 0.9rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Result Section Styling */
+#result {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* Student Profile Card */
+.student-profile-card {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    border-left: 5px solid #007bff;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.student-profile-card p {
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+}
+
+.student-profile-card strong {
+    color: #555;
+}
+
+/* Total Working Hours Display (High-Level Design) */
+.total-hours-display {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.total-hours-display .hours-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #007bff;
+    margin-bottom: 0.8rem;
+}
+
+.progress-bar-container {
+    width: 90%;
+    height: 20px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0.8rem auto;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out, background-color 0.3s ease;
+}
+
+.percentage-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #555;
+    margin-top: 0.8rem;
+}
+
+.status-message {
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.status-message .battery-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* Colors for progress bar and status message */
+.progress-bar-fill.completed, .progress-bar-fill.good { background-color: #28a745; } /* Green */
+.progress-bar-fill.average { background-color: #ffc107; } /* Yellow */
+.progress-bar-fill.danger { background-color: #dc3545; } /* Red */
+
+.status-message.completed, .status-message.good { color: #28a745; }
+.status-message.average { color: #ffc107; }
+.status-message.danger { color: #dc3545; }
+
+/* Event and Department Work Cards */
+.event-grid, .department-work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.event-card, .department-work-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #e9ecef;
+}
+
+.event-card:hover, .department-work-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event-card p, .department-work-card p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.event-card p:last-child, .department-work-card p:last-child {
+    margin-bottom: 0;
+}
+
+.event-card strong, .department-work-card strong {
+    color: #444;
+}
+
+.department-work-card .hours {
+    font-weight: 600;
+    color: #007bff;
+    font-size: 1.1rem;
+    margin-top: 0.8rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .student-profile-card p {
+        font-size: 1rem;
+    }
+
+    .status-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .battery-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .event-grid, .department-work-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
