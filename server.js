@@ -81,7 +81,8 @@ router.post('/get-attendance', async (req, res) => {
     }
 });
 
-app.use('/.netlify/functions/api', router);
+app.use('/', router); 
+
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
