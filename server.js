@@ -3,6 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const app = express();
+const router = express.Router();
 const port = 3000;
 
 app.use(cors());
@@ -10,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
-app.post('/get-attendance', async (req, res) => {
+router.post('/get-attendance', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
@@ -71,7 +72,6 @@ app.post('/get-attendance', async (req, res) => {
         if (error.response) {
             console.error('Response data:', error.response.data);
             console.error('Response status:', error.response.status);
-            console.error('Response headers:', error.response.headers);
         } else if (error.request) {
             console.error('Request data:', error.request);
         } else {
@@ -81,7 +81,7 @@ app.post('/get-attendance', async (req, res) => {
     }
 });
 
-
+app.use('/.netlify/functions/api', router);
 
 app.listen(port, () => {
     console.log(`Server listening at http://localhost:${port}`);
